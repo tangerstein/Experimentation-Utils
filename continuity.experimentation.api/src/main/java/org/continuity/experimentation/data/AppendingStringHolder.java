@@ -23,7 +23,15 @@ public class AppendingStringHolder extends AbstractDataHolder<String> {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void set(String data) {
+	protected String getWithoutNotification() {
+		return stringBuilder.toString();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void setWithoutNotification(String data) {
 		stringBuilder.append(data);
 	}
 
@@ -31,8 +39,9 @@ public class AppendingStringHolder extends AbstractDataHolder<String> {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public String get() {
-		return stringBuilder.toString();
+	public void invalidate() {
+		super.invalidate();
+		stringBuilder = new StringBuilder();
 	}
 
 }

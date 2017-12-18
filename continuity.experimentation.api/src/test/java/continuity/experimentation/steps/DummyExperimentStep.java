@@ -28,7 +28,7 @@ public class DummyExperimentStep implements IExperimentAction {
 	 */
 	@Override
 	public void execute() {
-		System.out.println("Input: " + inputHolder.get());
+		System.out.println("Input: " + (inputHolder.isSet() ? inputHolder.get() : "not set"));
 		outputHolder.set(message);
 	}
 

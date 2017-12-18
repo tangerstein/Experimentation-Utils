@@ -19,21 +19,73 @@ public abstract class AbstractDataHolder<T> implements IDataHolder<T> {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * To be called when the content of this holder has been set.
 	 */
-	@Override
-	public void notifyWrite() {
+	protected void notifyWrite() {
 		writeNotified = true;
+	}
+
+	/**
+	 * To be called before the content of this holder is to be read.
+	 *
+	 * @throws IllegalStateException
+	 *             If the content is not ready to be read.
+	 */
+	protected void notifyRead() throws IllegalStateException {
+		if (!writeNotified) {
+			throw new IllegalStateException(getClass().getSimpleName() + " '" + name + "' (holds " + dataType.getSimpleName() + ") is notified to be read before data has been written!");
+		}
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void notifyRead() throws IllegalStateException {
-		if (!writeNotified) {
-			throw new IllegalStateException(getClass().getSimpleName() + " '" + name + "' (holds " + dataType.getSimpleName() + ") is notified to be read before data has been written!");
-		}
+	public T get() throws IllegalStateException {
+		notifyRead();
+		return getWithoutNotification();
+	}
+
+	/**
+	 * Simply gets the resource without caring about notifications. Implementation can assume that
+	 * notification checking has already been done.
+	 *
+	 * @return The hold data.
+	 */
+	protected abstract T getWithoutNotification();
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void set(T data) {
+		setWithoutNotification(data);
+		notifyWrite();
+	}
+
+	/**
+	 * Simply sets the data without caring about notifications. Implementation can assume that
+	 * notification checking will be done afterwards.
+	 *
+	 * @param data
+	 *            The data to be set.
+	 */
+	protected abstract void setWithoutNotification(T data);
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void invalidate() {
+		writeNotified = false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean isSet() {
+		return writeNotified;
 	}
 
 	/**
