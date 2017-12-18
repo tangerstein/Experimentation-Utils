@@ -1,2 +1,2 @@
-# continuITy.experimentation
+# ContinuITy experimentation Utils
 Common means for experimentation

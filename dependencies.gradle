@@ -1,0 +1,54 @@
+subprojects {
+	repositories {
+		mavenCentral()
+		jcenter()
+		maven {
+			name 'NEXUS-NT'
+			url 'http://repository.novatec-gmbh.de/content/repositories/3rd_party_libs/'
+		}
+	
+		maven {
+			name 'diagnoseIT Nexus'
+			url 'http://repository.novatec-gmbh.de/content/repositories/diagnoseIT/'
+		}
+	
+		maven {
+			name 'diagnoseIT-snapshots Nexus'
+			url 'http://repository.novatec-gmbh.de/content/repositories/diagnoseIT-snapshots/'
+		}
+	
+		maven {
+			name 'SpringSource - External Bundle Releases'
+			url 'http://repository.springsource.com/maven/bundles/external/'
+		}
+	
+		maven {
+			name 'SpringSource - SpringSource Bundle Releases'
+			url 'http://repository.springsource.com/maven/bundles/release/'
+		}
+		maven {
+			name 'JBoss Public'
+			url "https://repository.jboss.org/nexus/content/groups/public/"
+		}
+		maven {
+		    url 'http://repo.spring.io/snapshot'
+		}
+		maven {
+		    url 'http://repo.spring.io/milestone'
+		}
+		maven {
+			url 'https://repo.spring.io/release/'
+		}
+		maven {
+			url 'https://repo.spring.io/libs-milestone'
+		}
+	}
+	
+	dependencies {
+		compile 'org.apache.commons:commons-lang3:3.4',
+		'org.apache.commons:commons-math3:3.6.1',
+		'commons-pool:commons-pool:1.6'
+		
+		testCompile 'junit:junit:4.12'
+	}
+}
