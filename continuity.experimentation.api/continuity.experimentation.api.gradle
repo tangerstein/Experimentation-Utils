@@ -4,6 +4,11 @@ dependencies {
 	compile("org.slf4j:slf4j-api:1.7.25")
 	compile group: 'ch.qos.logback', name: 'logback-core', version: '1.2.3'
 	compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+	
+	compile group: 'org.springframework', name: 'spring-web', version: '5.0.2.RELEASE'
+	
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.3'
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.3'
 
 	testImplementation 'junit:junit:4.12'
 }
