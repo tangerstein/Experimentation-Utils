@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 import org.continuity.experimentation.IExperimentAction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Element for executing actions concurrently.
@@ -82,6 +85,14 @@ public class ConcurrentElement implements IExperimentElement {
 	 * {@inheritDoc}
 	 */
 	@Override
+	public String toString() {
+		return toString("");
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public String toString(String newLinePrefix) {
 		char counter = 'a';
 		StringBuilder builder = new StringBuilder();
@@ -116,6 +127,8 @@ public class ConcurrentElement implements IExperimentElement {
 
 	private static class ThreadedAction implements IExperimentAction {
 
+		private static final Logger LOGGER = LoggerFactory.getLogger(ThreadedAction.class);
+
 		private final List<IExperimentElement> threads;
 
 		private final ExecutorService executorService;
@@ -131,6 +144,14 @@ public class ConcurrentElement implements IExperimentElement {
 		@Override
 		public void execute() {
 			threads.forEach(this::executeThread);
+			executorService.shutdown();
+
+			try {
+				executorService.awaitTermination(Long.MAX_VALUE, TimeUnit.MILLISECONDS);
+			} catch (InterruptedException e) {
+				LOGGER.warn("Thread was interrupted during waiting for the concurrent actions to finish!");
+				e.printStackTrace();
+			}
 		}
 
 		private void executeThread(IExperimentElement first) {

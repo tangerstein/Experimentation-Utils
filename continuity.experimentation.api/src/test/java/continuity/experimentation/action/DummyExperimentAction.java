@@ -1,4 +1,4 @@
-package continuity.experimentation.steps;
+package continuity.experimentation.action;
 
 import org.continuity.experimentation.IExperimentAction;
 import org.continuity.experimentation.data.IDataHolder;
@@ -7,7 +7,7 @@ import org.continuity.experimentation.data.IDataHolder;
  * @author Henning Schulz
  *
  */
-public class DummyExperimentStep implements IExperimentAction {
+public class DummyExperimentAction implements IExperimentAction {
 
 	private IDataHolder<String> inputHolder;
 	private IDataHolder<String> outputHolder;
@@ -17,7 +17,7 @@ public class DummyExperimentStep implements IExperimentAction {
 	/**
 	 *
 	 */
-	public DummyExperimentStep(IDataHolder<String> inputHolder, IDataHolder<String> outputHolder, String message) {
+	public DummyExperimentAction(IDataHolder<String> inputHolder, IDataHolder<String> outputHolder, String message) {
 		this.inputHolder = inputHolder;
 		this.outputHolder = outputHolder;
 		this.message = message;
