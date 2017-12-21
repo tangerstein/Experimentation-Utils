@@ -64,6 +64,15 @@ public class ExperimentElementBuilder<C extends IExperimentBuilder> extends Abst
 	}
 
 	/**
+	 * Adds a {@code ConcurrentElement} for executing parallel threads.
+	 *
+	 * @return A builder for specifying the threads.
+	 */
+	public ConcurrentBuilder<ExperimentElementBuilder<C>> concurrent() {
+		return new ConcurrentBuilder<>(this);
+	}
+
+	/**
 	 * {@inheritDoc}
 	 */
 	@Override

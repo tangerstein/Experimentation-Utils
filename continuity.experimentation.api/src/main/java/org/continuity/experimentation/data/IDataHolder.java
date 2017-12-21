@@ -9,19 +9,6 @@ package org.continuity.experimentation.data;
 public interface IDataHolder<T> {
 
 	/**
-	 * To be called when the content of this holder has been set.
-	 */
-	void notifyWrite();
-
-	/**
-	 * To be called before the content of this holder is to be read.
-	 *
-	 * @throws IllegalStateException
-	 *             If the content is not ready to be read.
-	 */
-	void notifyRead() throws IllegalStateException;
-
-	/**
 	 * Sets the content.
 	 *
 	 * @param data
@@ -35,5 +22,17 @@ public interface IDataHolder<T> {
 	 * @return Contained content.
 	 */
 	T get();
+
+	/**
+	 * Returns whether the data already has been set.
+	 * 
+	 * @return {@code true} if the data has been set or {@code false} otherwise.
+	 */
+	boolean isSet();
+
+	/**
+	 * Invalidates the stored data.
+	 */
+	void invalidate();
 
 }

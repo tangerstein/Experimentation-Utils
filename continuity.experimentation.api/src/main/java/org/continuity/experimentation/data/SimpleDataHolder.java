@@ -19,21 +19,23 @@ public class SimpleDataHolder<T> extends AbstractDataHolder<T> {
 	public SimpleDataHolder(String name, T initialData) {
 		super(name, (Class<T>) initialData.getClass());
 		this.data = initialData;
+		notifyWrite();
 	}
 
 	/**
 	 * {@inheritDoc}
-	 *
-	 * Overwrites already stored data.
 	 */
 	@Override
-	public void set(T data) {
-		this.data = data;
+	protected T getWithoutNotification() {
+		return this.data;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public T get() {
-		return this.data;
+	protected void setWithoutNotification(T data) {
+		this.data = data;
 	}
 
 }

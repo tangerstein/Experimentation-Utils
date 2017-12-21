@@ -52,7 +52,7 @@ public class BranchElement implements IExperimentElement {
 	}
 
 	/**
-	 * Adds an if branch.
+	 * Adds an if branch. The last element of this chain has to be {@link join}.
 	 *
 	 * @param condition
 	 *            Condition to be met to execute the branch.
@@ -64,7 +64,7 @@ public class BranchElement implements IExperimentElement {
 	}
 
 	/**
-	 * Sets {@link #elseBranch}.
+	 * Sets {@link #elseBranch}. The last element of this chain has to be {@link join}.
 	 *
 	 * @param elseBranch
 	 *            New value for {@link #elseBranch}

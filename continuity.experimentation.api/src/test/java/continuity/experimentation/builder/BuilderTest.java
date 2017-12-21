@@ -8,7 +8,7 @@ import org.continuity.experimentation.data.AppendingStringHolder;
 import org.continuity.experimentation.data.SimpleDataHolder;
 import org.junit.Test;
 
-import continuity.experimentation.steps.DummyExperimentStep;
+import continuity.experimentation.action.DummyExperimentAction;
 
 /**
  * @author Henning Schulz
@@ -24,11 +24,11 @@ public class BuilderTest {
 
 		AppendingStringHolder counter = new AppendingStringHolder("counter");
 
-		DummyExperimentStep step1 = new DummyExperimentStep(str1, str2, "Hello");
-		DummyExperimentStep step2 = new DummyExperimentStep(str2, str3, "I'm fine.");
-		DummyExperimentStep step3 = new DummyExperimentStep(str2, str3, "I'm not feeling good.");
+		DummyExperimentAction step1 = new DummyExperimentAction(str1, str2, "Hello");
+		DummyExperimentAction step2 = new DummyExperimentAction(str2, str3, "I'm fine.");
+		DummyExperimentAction step3 = new DummyExperimentAction(str2, str3, "I'm not feeling good.");
 
-		DummyExperimentStep countStep = new DummyExperimentStep(counter, counter, "|");
+		DummyExperimentAction countStep = new DummyExperimentAction(counter, counter, "|");
 
 		ExperimentBuilder builder = new ExperimentBuilder();
 		Experiment experiment = builder.newExperiment("My Experiment") //
