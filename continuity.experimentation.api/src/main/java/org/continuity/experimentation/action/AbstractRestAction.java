@@ -15,7 +15,7 @@ public abstract class AbstractRestAction implements IExperimentAction {
 	private final String host;
 	private final String port;
 
-	private final RestTemplate restTemplate;
+	protected final RestTemplate restTemplate;
 
 	public AbstractRestAction(String host, String port, RestTemplate restTemplate) {
 		this.host = host;
